@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-{{ serviceName }}
+{{ serviceName }} - Create a Project
 {% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
 {% block beforeContent %}
   {{ govukPhaseBanner({
@@ -25,11 +32,181 @@
 
     <h1 class="govuk-heading-xl">Create and share an idea</h1>
 
-    <p class="govuk-body">paragraph</p>
+    <p class="govuk-body">Some introduction about creating an idea</p>
 
-    <form action="{{ '/share-idea/view-idea' if editing else '/leave-feedback/multiple-children' }}" method="post" class="form">
+    <form action="{{ '/share-idea/view-idea' }}" method="post" class="form">
 
-    <p class="govuk-body">A form with fields to outline the idea</p>
+      {{ govukInput({
+        label: {
+          text: "Idea name"
+        },
+        id: "idea-name",
+        name: "idea-name"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Organisation name"
+        },
+        id: "org-name",
+        name: "org-name"
+      }) }}
+
+      {% call govukFieldset({
+        legend: {
+          text: "Who is the main contact person?",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Full name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "full-name",
+          name: "full-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Role"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "role",
+          name: "role"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Department"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "department",
+          name: "department"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          hint: {
+            text: "Only registered Local Government users will be able to view contact details"
+          },
+          id: "email",
+          name: "email",
+          type: "email",
+          classes: "govuk-!-width-three-quarters",
+          autocomplete: "email",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+      {% endcall %}
+
+
+      {{ govukInput({
+        label: {
+          text: "Keywords"
+        },
+        hint: {
+          text: "Type in comma separated keywords"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "keywords",
+        name: "keywords"
+      }) }}
+
+      {{ govukTextarea({
+        name: "problem-to-solve",
+        id: "problem-to-solve",
+        label: {
+          text: "What problem are you trying to solve?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+
+      {{ govukCheckboxes({
+        idPrefix: "help-with",
+        name: "help-with",
+        fieldset: {
+          legend: {
+            text: "What do you need help with?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "Select all that apply."
+        },
+        items: [
+          {
+            value: "ur",
+            text: "User research"
+          },
+          {
+            value: "dev",
+            text: "Developers"
+          },
+          {
+            value: "servd",
+            text: "Service Designers"
+          },
+          {
+            value: "desig",
+            text: "Designers"
+          },
+          {
+            value: "techarch",
+            text: "Tech architect"
+          },
+          {
+            value: "budget",
+            text: "Budget"
+          },
+          {
+            value: "feedback",
+            text: "Feedback"
+          },
+          {
+            value: "data",
+            text: "Data"
+          },
+          {
+            value: "code",
+            text: "Code"
+          },
+          {
+            value: "tech-advice",
+            text: "Tech Advice"
+          },
+          {
+            value: "proc-advice",
+            text: "Procurement Advice"
+          },
+          {
+            value: "expert-opinion",
+            text: "Expert opinion"
+          }
+        ]
+      }) }}
+
+      {{ govukTextarea({
+        name: "other-help",
+        id: "other-help",
+        label: {
+          text: "Other help, please state"
+        }
+      }) }}
+
+
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
 
     </form>
 
