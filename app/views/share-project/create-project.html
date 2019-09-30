@@ -1,0 +1,318 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }}
+{% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a prototype service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: '/'
+      }) }}
+
+    <h1 class="govuk-heading-xl">Create and share a project</h1>
+
+    <p class="govuk-body">Some introduction about creating a project</p>
+
+    <form action="{{ '/share-project/view-project' }}" method="post" class="form">
+
+
+      {{ govukInput({
+        label: {
+          text: "Project title"
+        },
+        id: "project-name",
+        name: "project-name"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Organisation name"
+        },
+        id: "org-name",
+        name: "org-name"
+      }) }}
+
+      {% call govukFieldset({
+        legend: {
+          text: "Who is the main contact person?",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        }
+      }) %}
+
+
+        {{ govukInput({
+          label: {
+            text: "Full name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "full-name",
+          name: "full-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Role"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "role",
+          name: "role"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Department"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "department",
+          name: "department"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          hint: {
+            text: "Only registered Local Government users will be able to view contact details"
+          },
+          id: "email",
+          name: "email",
+          type: "email",
+          classes: "govuk-!-width-three-quarters",
+          autocomplete: "email",
+          attributes: {
+            spellcheck: "false"
+          }
+        }) }}
+
+      {% endcall %}
+
+      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add team members</a> <br>
+      <span class="govuk-hint">
+        You can add members at a later stage
+      </span>
+
+      {{ govukInput({
+        label: {
+          text: "Keywords"
+        },
+        hint: {
+          text: "Type in comma separated keywords"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "keywords",
+        name: "keywords"
+      }) }}
+
+      {{ govukDateInput({
+        id: "start-date",
+        namePrefix: "start-date",
+        fieldset: {
+          legend: {
+            text: "When did the project started?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "For example, 27 3 2007"
+        }
+      }) }}
+
+      {{ govukDateInput({
+        id: "end-date",
+        namePrefix: "end-date",
+        fieldset: {
+          legend: {
+            text: "When did the project ended?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "For example, 27 3 2007"
+        }
+      }) }}
+
+      {{ govukTextarea({
+        name: "problem-to-solve",
+        id: "problem-to-solve",
+        label: {
+          text: "What problem are you trying to solve?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      {{ govukTextarea({
+        name: "why-problem",
+        id: "why-problem",
+        label: {
+          text: "Why is this a problem?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      {{ govukTextarea({
+        name: "what-outcomes",
+        id: "what-outcomes",
+        label: {
+          text: "What outcomes are you looking for?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      {{ govukTextarea({
+        name: "done-so-far",
+        id: "done-so-far",
+        label: {
+          text: "What have you done so far?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+
+      <h3 class="govuk-heading-l">Additional resources you want to share with Localgov community</h3>
+      <span class="govuk-hint">
+        You can add more resources later as well.
+      </span>
+
+      {% call govukFieldset({
+        legend: {
+          text: "Reports",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "You can provide links or upload documents. Things that can be shared are Research Findings, Business case"
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Resource name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "resource-1",
+          name: "resource-1"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Paste in link"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "link-1",
+          name: "link-1"
+        }) }}
+
+        {{ govukFileUpload({
+          id: "file-upload-1",
+          name: "file-upload-1",
+          label: {
+            text: "Upload a file"
+          }
+        }) }}
+
+      {% endcall %}
+
+      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another resource</a> <br><br>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m">
+
+      {% call govukFieldset({
+        legend: {
+          text: "Resources you've used",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        },
+        hint: {
+          text: "You can provide links to resources that helped with the project"
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Resource name"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "resource-2",
+          name: "resource-2"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Paste in link"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "link-2",
+          name: "link-2"
+        }) }}
+
+      {% endcall %}
+
+      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another link</a> <br><br>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m">
+
+      {% call govukFieldset({
+        legend: {
+          text: "Show and tells",
+          classes: "govuk-fieldset__legend--m",
+          isPageHeading: false
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Show and tell title"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "show-tell-name",
+          name: "show-tell-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Paste in link to show and tell"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "show-tell-link",
+          name: "show-tell-link"
+        }) }}
+
+      {% endcall %}
+
+      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another show and tell</a> <br><br>
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}

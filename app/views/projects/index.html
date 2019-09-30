@@ -1,0 +1,57 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Project
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a prototype service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukBackLink({
+          text: "Back",
+          href: '/'
+        }) }}
+      <h1 class="govuk-heading-xl">
+        A project name
+      </h1>
+      <p class="govuk-body-l">
+        Summary of that project or sth
+      </p>
+
+      <h2 class="govuk-heading-m">Heading 2 - some headingy thing</h2>
+
+      <p>A paragraph</p>
+
+
+      <ul class="govuk-list">
+        <li>
+          <a href="#">
+            link thing
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            another link
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            and one more link
+          </a>
+        </li>
+      </ul>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }}
+{% endblock %}
+
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a prototype service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: '#'
+      }) }}
+
+    <h1 class="govuk-heading-xl">Create and share an idea</h1>
+
+    <p class="govuk-body">paragraph</p>
+
+    <form action="{{ '/leave-feedback/check-your-answers' if editing else '/leave-feedback/multiple-children' }}" method="post" class="form">
+
+      {{ govukInput({
+        label: {
+          text: "Your email address",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "We’ll ask you to verify this address by clicking a link in an email and use it to send you a copy of your feedback."
+        },
+        id: "email",
+        name: "email",
+        type: "email",
+        classes: "govuk-!-width-three-quarters",
+        autocomplete: "email",
+        attributes: {
+          spellcheck: "false"
+        }
+      }) }}
+
+      {{ govukCheckboxes({
+        idPrefix: "confirm-parent",
+        name: "confirm-parent",
+        fieldset: {
+          legend: {
+            text: "Confirm you are a parent or carer of a child at this school",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "confirm-parent",
+            text: "I currently have a child at this school"
+          }
+        ]
+      }) }}
+
+      {% if editing %}
+        {{ govukButton({
+          text: "Save your changes"
+        }) }}
+      {% else %}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      {% endif %}
+
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}
