@@ -27,53 +27,9 @@
 
     <p class="govuk-body">paragraph</p>
 
-    <form action="{{ '/leave-feedback/check-your-answers' if editing else '/leave-feedback/multiple-children' }}" method="post" class="form">
+    <form action="{{ '/share-idea/view-idea' if editing else '/leave-feedback/multiple-children' }}" method="post" class="form">
 
-      {{ govukInput({
-        label: {
-          text: "Your email address",
-          classes: "govuk-label--m"
-        },
-        hint: {
-          text: "We’ll ask you to verify this address by clicking a link in an email and use it to send you a copy of your feedback."
-        },
-        id: "email",
-        name: "email",
-        type: "email",
-        classes: "govuk-!-width-three-quarters",
-        autocomplete: "email",
-        attributes: {
-          spellcheck: "false"
-        }
-      }) }}
-
-      {{ govukCheckboxes({
-        idPrefix: "confirm-parent",
-        name: "confirm-parent",
-        fieldset: {
-          legend: {
-            text: "Confirm you are a parent or carer of a child at this school",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-          {
-            value: "confirm-parent",
-            text: "I currently have a child at this school"
-          }
-        ]
-      }) }}
-
-      {% if editing %}
-        {{ govukButton({
-          text: "Save your changes"
-        }) }}
-      {% else %}
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      {% endif %}
+    <p class="govuk-body">A form with fields to outline the idea</p>
 
     </form>
 
