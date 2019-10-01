@@ -32,7 +32,7 @@
 
     <h1 class="govuk-heading-xl">Create and share a project</h1>
 
-    <p class="govuk-body">Some introduction about creating a project</p>
+    <p class="govuk-body-l">Share information about your project, so others can find it.</p>
 
     <form action="{{ '/share-project/view-project' }}" method="post" class="form">
 
@@ -193,25 +193,51 @@
 
       <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
 
-      <h3 class="govuk-heading-l">Additional resources you want to share with Localgov community</h3>
+      <h3 class="govuk-heading-l">Additional resources you want to share with the local government community</h3>
       <span class="govuk-hint">
-        You can add more resources later as well.
+        You can also add more resources later
       </span>
 
       {% call govukFieldset({
         legend: {
-          text: "Reports",
+          text: "Show and tells",
           classes: "govuk-fieldset__legend--m",
           isPageHeading: false
-        },
-        hint: {
-          text: "You can provide links or upload documents. Things that can be shared are Research Findings, Business case"
         }
       }) %}
 
         {{ govukInput({
           label: {
-            text: "Resource name"
+            text: "Show and tell title"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "show-tell-name",
+          name: "show-tell-name"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Paste in link to show and tell"
+          },
+          classes: "govuk-!-width-two-thirds",
+          id: "show-tell-link",
+          name: "show-tell-link"
+        }) }}
+
+      {% endcall %}
+
+      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another show and tell</a> <br><br>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m">
+
+      <h3 class="govuk-heading-m">Documents</h3>
+      <span class="govuk-hint">
+        For example research findings and business cases
+      </span>
+
+        {{ govukInput({
+          label: {
+            text: "Document name"
           },
           classes: "govuk-!-width-two-thirds",
           id: "resource-1",
@@ -235,9 +261,7 @@
           }
         }) }}
 
-      {% endcall %}
-
-      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another resource</a> <br><br>
+      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another document</a> <br><br>
 
       <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m">
 
@@ -272,39 +296,9 @@
 
       {% endcall %}
 
-      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another link</a> <br><br>
+      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another link</a>
 
-      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--m">
-
-      {% call govukFieldset({
-        legend: {
-          text: "Show and tells",
-          classes: "govuk-fieldset__legend--m",
-          isPageHeading: false
-        }
-      }) %}
-
-        {{ govukInput({
-          label: {
-            text: "Show and tell title"
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "show-tell-name",
-          name: "show-tell-name"
-        }) }}
-
-        {{ govukInput({
-          label: {
-            text: "Paste in link to show and tell"
-          },
-          classes: "govuk-!-width-two-thirds",
-          id: "show-tell-link",
-          name: "show-tell-link"
-        }) }}
-
-      {% endcall %}
-
-      <a href="#" class="govuk-link govuk-body govuk-!-font-size-19 govuk-link--no-visited-state">+ Add another show and tell</a> <br><br>
+      <br><br><br><br>
 
       {{ govukButton({
         text: "Save and continue"

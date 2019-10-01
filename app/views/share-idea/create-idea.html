@@ -32,7 +32,7 @@
 
     <h1 class="govuk-heading-xl">Create and share an idea</h1>
 
-    <p class="govuk-body">Some introduction about creating an idea</p>
+    <p class="govuk-body-l">Let others know what your idea is and see if anyone has relevant experience.</p>
 
     <form action="{{ '/share-idea/view-idea' }}" method="post" class="form">
 
@@ -92,7 +92,7 @@
             text: "Email address"
           },
           hint: {
-            text: "Only registered Local Government users will be able to view contact details"
+            text: "Only registered local government users will be able to see this"
           },
           id: "email",
           name: "email",
@@ -123,7 +123,7 @@
         name: "problem-to-solve",
         id: "problem-to-solve",
         label: {
-          text: "What problem are you trying to solve?",
+          text: "What problem are you trying to work on?",
           classes: "govuk-label--m"
         }
       }) }}
@@ -140,7 +140,7 @@
           }
         },
         hint: {
-          text: "Select all that apply."
+          text: "Select all that apply"
         },
         items: [
           {
@@ -153,7 +153,7 @@
           },
           {
             value: "servd",
-            text: "Service Designers"
+            text: "Service designers"
           },
           {
             value: "desig",
@@ -181,11 +181,11 @@
           },
           {
             value: "tech-advice",
-            text: "Tech Advice"
+            text: "Tech advice"
           },
           {
             value: "proc-advice",
-            text: "Procurement Advice"
+            text: "Procurement advice"
           },
           {
             value: "expert-opinion",
@@ -198,11 +198,9 @@
         name: "other-help",
         id: "other-help",
         label: {
-          text: "Other help, please state"
+          text: "Anything else?"
         }
       }) }}
-
-
 
       {{ govukButton({
         text: "Save and continue"
