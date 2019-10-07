@@ -25,22 +25,6 @@
           href: '/'
         }) }}
 
-      <div class="info-panel">
-        <p class="govuk-body">This is your project preview. With basic information it is ready to be published. Fill in additional sections and add resources at any time.</p>
-
-        {{ govukButton({
-          text: "Publish",
-          href: "/share-project/published-project",
-          classes: "govuk-!-margin-right-1"
-        }) }}
-
-        {{ govukButton({
-          text: "Save as draft",
-          classes: "govuk-button--secondary"
-        }) }}
-
-      </div>
-
     </div>
 </div>
 <div class="govuk-grid-row">
@@ -52,16 +36,11 @@
       <h1 class="govuk-heading-xl"><a href="/share-project/create-project-start">Add project name</a></h1>
     {% endif %}
 
-
-
     <!-- keywords -->
     {% if data['keywords']%}
     <p class="govuk-body govuk-tag tag-basic">{{ data['keywords'] }}</p>
     {% else %}
-    <div class="add-area">
-      <button class="plus-button plus-button-large"></button>
-      <span class="govuk-body-s info-text"><a href="">Add keywords</a></span>
-    </div>
+    <p class="govuk-body">No keywords</p>
     {% endif %}
 
     <!-- problem working on -->
@@ -70,10 +49,7 @@
 
       <p class="govuk-body">{{ data['problem-to-solve'] }}</p>
     {% else %}
-    <div class="add-area">
-      <button class="plus-button plus-button-large"></button>
-      <span class="govuk-body-s info-text"><a href="/share-project/create-project-start">Add problem description</a></span>
-    </div>
+    <p class="govuk-body">The author hasn't published that yet.</p>
     {% endif %}
 
     <!-- why problem -->
@@ -84,10 +60,7 @@
     <p class="govuk-body">{{ data['why-problem'] }}</p>
 
     {% else %}
-    <div class="add-area">
-      <button class="plus-button plus-button-large"></button>
-      <span class="govuk-body-s info-text"><a href="/share-project/create-project-start">Add problem description</a></span>
-    </div>
+    <p class="govuk-body">The author hasn't published that yet.</p>
 
     {% endif %}
 
@@ -98,30 +71,46 @@
       <p class="govuk-body">{{ data['what-outcomes'] }}</p>
 
     {% else %}
-    <div class="add-area">
-      <button class="plus-button plus-button-large"></button>
-      <span class="govuk-body-s info-text"><a href="/share-project/create-project-start">Add problem description</a></span>
-    </div>
+    <p class="govuk-body">The author hasn't published that yet.</p>
     {% endif %}
 
-    <a class="edit-link" href="/share-project/create-project-start"> Edit problem main section</a>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Updates</h2>
+    <p class="govuk-body">The author hasn't published any updates.</p>
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-    <h2 class="govuk-heading-l">Updates</h2>
-    <div class="add-area">
-      <button class="plus-button plus-button-large"></button>
-      <span class="govuk-body-s info-text"><a href="">Add a resource</a></span>
-    </div>
+    <h2 class="govuk-heading-l">Comments</h2>
+    <p class="govuk-body">No Comments</p>
+
+    {{ govukCharacterCount({
+      name: "comment",
+      id: "comment",
+      maxwords: 100,
+      rows: "4",
+      label: {
+        text: "Ask a question about this project",
+        classes: "govuk-label--s"
+      }
+    }) }}
+
+    {{ govukButton({
+      text: "Post"
+    }) }}
 
   </div>
 
   <!-- SIDEBAR -->
   <div class="govuk-grid-column-one-third">
     <div class="mini-container">
+      <h4 class="govuk-heading-s">Stats</h4>
+      <span>22 viewers</span>
+      <span>2 comments</span>
+      <span>5 people found resources useful</span>
+
+
       <h4 class="govuk-heading-s">Status</h4>
         <p class="govuk-body">Project</p>
-        <a href="">Change status</a>
-
 
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" >
       <h4 class="govuk-heading-s">Main contact</h4>
@@ -135,21 +124,44 @@
       </div>
 
       {% else %}
-      <div class="add-area">
-        <button class="plus-button plus-button-large"></button>
-        <span class="govuk-body-s info-text">There's is no contact yet. <a href="/share-project/add-main-contact">Add contact details</a></span>
-      </div>
+      <p class="govuk-body">No main contact for this project.</p>
       {% endif %}
 
       <h4 class="govuk-heading-s">Team</h4>
-      <div class="add-area">
-        <button class="plus-button plus-button-large"></button>
-        <span class="govuk-body-s info-text">There's is no team members listed. <a href="/share-project/add-main-contact">Add team</a></span>
-      </div>
-
+      <p class="govuk-body">No main contact for this project.</p>
 
     </div>
   </div>
 
+
+
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" >
+
+      <h4 class="govuk-heading-m">Related projects</h4>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+          <div class="related-project">
+            <h5 class="govuk-heading-s"><a href="">Related project name</a></h5>
+          </div>
+        </div>
+
+        <div class="govuk-grid-column-one-third">
+          <div class="related-project">
+            <h5 class="govuk-heading-s"><a href="">Related project name</a></h5>
+          </div>
+        </div>
+
+        <div class="govuk-grid-column-one-third">
+          <div class="related-project">
+            <h5 class="govuk-heading-s"><a href="">Related project name</a></h5>
+          </div>
+        </div>
+      </div>
+
+    </div>
 </div>
 {% endblock %}

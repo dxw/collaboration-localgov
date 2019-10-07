@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} - Create a Project
+{% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a prototype service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: '/'
+      }) }}
+
+    <h1 class="govuk-heading-xl">Create a project</h1>
+
+    <p class="govuk-body-l">Share information about your project, so others can find it.</p>
+
+    <form action="{{ '/share-project/preview-project' }}" method="post" class="form">
+
+
+      {{ govukInput({
+        label: {
+          text: "Project title"
+        },
+        hint: {
+          text: "Choose a name that will help others find it"
+        },
+        id: "project-name",
+        name: "project-name"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Keywords"
+        },
+        hint: {
+          text: "Type in comma separated keywords"
+        },
+        id: "keywords",
+        name: "keywords"
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "problem-to-solve",
+        id: "problem-to-solve",
+        maxwords: 100,
+        rows: "4",
+        label: {
+          text: "What problem are you trying to solve?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "why-problem",
+        id: "why-problem",
+        maxwords: 100,
+        rows: "4",
+        label: {
+          text: "Why is this a problem?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      {{ govukCharacterCount({
+        name: "what-outcomes",
+        id: "what-outcomes",
+        maxwords: 100,
+        rows: "4",
+        label: {
+          text: "What outcomes are you looking for?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      <br><br>
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}
