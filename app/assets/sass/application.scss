@@ -20,6 +20,46 @@ $govuk-assets-path: '/govuk/assets/';
 $blue: #1d70b8;
 $tealy: #005e5e;
 
+
+
+@include govuk-media-query($from: mobile) {
+  .localgov.govuk-header__logo {
+    width: 33%;
+  }
+  .logged-user {
+    float: right;
+  }
+  .localgov-profile-link {
+    float: right;
+  }
+}
+
+
+.govuk-header__container {
+  border-bottom-color: $tealy;
+}
+
+@include govuk-media-query($from: tablet) {
+  .govuk-summary-list__row .govuk-summary-list__key {
+    width: 55%;
+  }
+
+  .govuk-summary-list__row .govuk-summary-list__value {
+    width: 30%;
+  }
+
+  .govuk-summary-list__row .govuk-summary-list__actions {
+    width: 15%;
+  }
+}
+
+
+.sub-heading {
+  color: #666;
+  display: block;
+  font-size: 16px;
+}
+
 .info-panel {
   border: 1px solid lighten($tealy, 10%);
   border-radius: 5px;
@@ -134,4 +174,23 @@ $tealy: #005e5e;
 .related-project {
   background-color: #ccc;
   padding: 20px;
+}
+
+.box-item {
+  display: inline-block;
+  height: auto;
+  width: 25%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  float: left;
+  margin-right: 20px;
+
+  span {
+    margin-top: 10px;
+  }
+}
+
+.box-link {
+  height: 100%;
+  width: 100%;
 }
