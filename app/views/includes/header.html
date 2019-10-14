@@ -1,13 +1,13 @@
 <header class="govuk-header " role="banner" data-module="govuk-header">
     <div class="govuk-header__container govuk-width-container">
       <div class="localgov govuk-header__logo">
-        <a href="#" class="govuk-header__link govuk-header__link--homepage">
+        <a href="/" class="govuk-header__link govuk-header__link--homepage">
           <span class="govuk-header__logotype">
 
             <svg role="presentation" focusable="false" class="govuk-header__logotype-crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.35 225.83" height="30" width="36">
               <g data-name="Layer 2" fill="#fff" stroke-miterlimit="10" stroke-width="6"><path d="M182.17 55.72l-83.81 51.77-87.53-53.16S70.06 20.47 98.12 3.52z" stroke="#34ab49"/><path stroke="#d52728" d="M188.8 168.62l-85.3 51.87V119.21l85.82-51.12-.52 100.53z"/><path stroke="#2aa5dd" d="M91.44 219.27L3 168.21V66.54l88.96 52.2-.52 100.53z"/></g>
 
-              <image src="/assets/images/localgov-logo-white.png" xlink:href="" class="govuk-header__logotype-crown-fallback-image" width="36" height="32"></image>
+              <image src="{{ asset_path }}/images/localgov-logo-white.png" xlink:href="" class="govuk-header__logotype-crown-fallback-image" width="36" height="32"></image>
             </svg>
             <span class="govuk-header__logotype-text">
               Localgov
@@ -16,7 +16,7 @@
         </a>
       </div>
       <div class="govuk-header__content">
-        <a href="#" class="govuk-header__link govuk-header__link--service-name">
+        <a href="/alpha-2" class="govuk-header__link govuk-header__link--service-name">
           Collaboration
         </a>
         <span class="logged-user">You're logged in as Joe Bloggs</span>
@@ -39,7 +39,7 @@
               </a>
             </li>
             <li class="govuk-header__navigation-item localgov-profile-link">
-              <a class="govuk-header__link" href="#3">
+              <a class="govuk-header__link" href="/profile-view">
                 My Profile
               </a>
             </li>
