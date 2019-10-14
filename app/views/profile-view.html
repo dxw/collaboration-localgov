@@ -1,0 +1,140 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Your profile view
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      {{ govukBackLink({
+          text: "Back",
+          href: '/'
+        }) }}
+
+      <h1 class="govuk-heading-l">
+        About me
+      </h1>
+      <img class="profile-photo" src="{{ asset_path }}/images/profile-photo.png" alt="Users profile photo">
+      <h2 class="govuk-heading-m">Joe Bloggs</h2>
+      <ul class="govuk-list">
+        <li>
+          Borsetshire County Council
+        </li>
+        <li>
+          Transformation Manager
+        </li>
+        <li>
+          twitter: <a href="">@jjmallard</a>
+        </li>
+        <li>
+          Linkedin: <a href="">linke.in/jjdhu</a>
+        </li>
+      </ul>
+
+      <h3 class="govuk-heading-m">Ask me about</h3>
+      <ul class="govuk-list inline-tags skill-tags">
+        <li>
+          Skill
+        </li>
+        <li>
+          Skill
+        </li>
+        <li>
+          Skill
+        </li>
+        <li>
+          Skill
+        </li>
+      </ul>
+
+      <h3 class="govuk-heading-m">I'm interested in</h3>
+      <ul class="govuk-list inline-tags interest-tags">
+        <li>
+          A thing
+        </li>
+        <li>
+          A thing
+        </li>
+        <li>
+          A thing
+        </li>
+        <li>
+          A thing
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="govuk-grid-column-one-half user-contribution">
+      <h1 class="govuk-heading-l">
+        My activity
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        My projects
+      </h2>
+
+      <div class="card">
+        <h3 class="govuk-heading-s"><a href="#">Reduce costs of street cleaning</a></h3>
+        <div class="inline-comms">
+          <span class="govuk-body">50 views |</span>
+          <span class="govuk-body">22 comments |</span>
+          <span class="govuk-body">10 likes</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="govuk-heading-s"><a href="#">Developing an open user research library</a></h3>
+        <div class="inline-comms">
+          <span class="govuk-body">9 views |</span>
+          <span class="govuk-body">2 comments |</span>
+          <span class="govuk-body">34 likes</span>
+        </div>
+      </div>
+
+      <p class="govuk-body"><a class="govuk-link" href="">View all projects</a></p>
+
+      <h2 class="govuk-heading-m">
+        My questions
+      </h2>
+
+      <div class="card">
+        <h3 class="govuk-heading-s"><a href="#">Have you used a chatbot for repairs service?</a></h3>
+        <div class="inline-comms">
+          <span class="govuk-body">3 answers</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="govuk-heading-s"><a href="#">Where to find a good example of a business case for migrating data?</a></h3>
+        <div class="inline-comms">
+          <span class="govuk-body">10 answers</span>
+        </div>
+      </div>
+
+      <h2 class="govuk-heading-m">
+        My contributions
+      </h2>
+
+      <div class="card">
+        <h3 class="govuk-heading-s"><a href="#">You are watching 50 projects</a></h3>
+      </div>
+
+      <div class="card">
+        <h3 class="govuk-heading-s"><a href="#">You have commented on 34 projects</a></h3>
+      </div>
+
+      <div class="card">
+        <h3 class="govuk-heading-s"><a href="#">You have answered 50 questions</a></h3>
+      </div>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}
