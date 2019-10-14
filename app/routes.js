@@ -15,4 +15,12 @@ router.get('/projects/', function(req, res) {
   res.render('projects/index');
 });
 
+router.post('/share-project/add-outcomes', function(req, res) {
+  res.redirect('/share-project/preview-project');
+});
+
+router.post('/post-comment', function(req, res) {
+  res.redirect('/share-project/published-project');
+});
+
 module.exports = router
