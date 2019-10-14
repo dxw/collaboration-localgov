@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+{{ serviceName }} - Create a Project
+{% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "alpha"
+    },
+    html: 'This is a prototype service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukBackLink({
+        text: "Back",
+        href: '/'
+      }) }}
+
+    <h1 class="govuk-heading-l">Update {{ data['problem-to-solve']}}
+    </h1>
+
+    <form action="{{ '/share-project/add-outcomes' }}" method="post" class="form">
+
+      {{ govukCharacterCount({
+        name: "what-outcomes",
+        id: "what-outcomes",
+        maxwords: 100,
+        rows: "4",
+        label: {
+          text: "What outcomes are you working towards?",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      <br><br>
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+    </form>
+
+  </div>
+
+</div>
+{% endblock %}
