@@ -30,44 +30,49 @@
         href: '/'
       }) }}
 
-    <h1 class="govuk-heading-xl">Create a project</h1>
-
-    <p class="govuk-body-l">Share information about your project, so others can find it.</p>
+    <h1 class="govuk-heading-xl">Share your idea, problem or project
+    </h1>
 
     <form action="{{ '/share-project/preview-project' }}" method="post" class="form">
-
-
-      {{ govukInput({
-        label: {
-          text: "Project title"
-        },
-        hint: {
-          text: "Choose a name that will help others find it"
-        },
-        id: "project-name",
-        name: "project-name"
-      }) }}
-
-      {{ govukInput({
-        label: {
-          text: "Keywords"
-        },
-        hint: {
-          text: "Type in comma separated keywords"
-        },
-        id: "keywords",
-        name: "keywords"
-      }) }}
 
       {{ govukCharacterCount({
         name: "problem-to-solve",
         id: "problem-to-solve",
-        maxwords: 100,
-        rows: "4",
+        maxwords: 10,
+        rows: "1",
+        hint: {
+          text: "For example: Reducing missed bins collection"
+        },
         label: {
           text: "What problem are you trying to solve?",
           classes: "govuk-label--m"
         }
+      }) }}
+
+      {% from "govuk/components/select/macro.njk" import govukSelect %}
+
+      {{ govukSelect({
+        id: "status",
+        name: "status",
+        classes: "govuk-!-width-three-quarters",
+        label: {
+          text: "Are you currently working on this?",
+          classes: "govuk-label--m"
+        },
+        items: [
+          {
+            value: "Finished working on this",
+            text: "No, we’ve finished working on it"
+          },
+          {
+            value: "Currently working on it now",
+            text: "Yes, we’re working on it now"
+          },
+          {
+            value: "Will be working on it in future",
+            text: "No, we’ll be working on it in future"
+          }
+        ]
       }) }}
 
       {{ govukCharacterCount({
@@ -81,15 +86,145 @@
         }
       }) }}
 
-      {{ govukCharacterCount({
-        name: "what-outcomes",
-        id: "what-outcomes",
-        maxwords: 100,
-        rows: "4",
+      {% set helpHtml %}
+        {{ govukCheckboxes({
+          idPrefix: "help-with",
+          id: "help-with",
+          name: "help-with",
+          fieldset: {
+            legend: {
+              text: "What do you need help with?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "User research",
+              text: "User research"
+            },
+            {
+              value: "Development",
+              text: "Development"
+            },
+            {
+              value: "Service design",
+              text: "Service design"
+            },
+            {
+              value: "Design",
+              text: "Design"
+            },
+            {
+              value: "Technical architecture",
+              text: "Technical architecture"
+            },
+            {
+              value: "Budget",
+              text: "Budget"
+            },
+            {
+              value: "Peer feedback",
+              text: "Peer feedback"
+            },
+            {
+              value: "Data",
+              text: "Data"
+            },
+            {
+              value: "Code",
+              text: "Code"
+            },
+            {
+              value: "Technical advice",
+              text: "Technical advice"
+            },
+            {
+              value: "Procurement advice",
+              text: "Procurement advice"
+            },
+            {
+              value: "Expert opinion",
+              text: "Expert opinion"
+            }
+          ]
+        }) }}
+
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "need-help",
+        name: "need-help",
+        fieldset: {
+          legend: {
+            text: "Do you need any help?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "no",
+            text: "No"
+          },
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: helpHtml
+            }
+          }
+        ]
+      }) }}
+
+      {% set helpHtml %}
+        {{ govukCharacterCount({
+          name: "question",
+          id: "question",
+          maxwords: 100,
+          rows: "4",
+          label: {
+            text: "Ask your question",
+            classes: "govuk-label--m"
+          }
+        }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "ask-question",
+        name: "ask-question",
+        fieldset: {
+          legend: {
+            text: "Do you want to ask a question to the community?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "no",
+            text: "No"
+          },
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: helpHtml
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukInput({
         label: {
-          text: "What outcomes are you looking for?",
+          text: "Keywords",
           classes: "govuk-label--m"
-        }
+        },
+        hint: {
+          text: "These will help more people find your idea, problem or project. Separate each one with a comma."
+        },
+        id: "keywords",
+        name: "keywords"
       }) }}
 
       <br><br>

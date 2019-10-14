@@ -30,10 +30,11 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% if data['project-name']%}
-      <h1 class="govuk-heading-xl">{{ data['project-name'] }}</h1>
+    {% if data['problem-to-solve']%}
+
+      <h1 class="govuk-heading-xl">{{ data['problem-to-solve'] }}</h1>
     {% else %}
-      <h1 class="govuk-heading-xl"><a href="/share-project/create-project-start">Add project name</a></h1>
+      <h1 class="govuk-heading-xl">Problem working on</h1>
     {% endif %}
 
     <!-- keywords -->
@@ -41,15 +42,6 @@
     <p class="govuk-body govuk-tag tag-basic">{{ data['keywords'] }}</p>
     {% else %}
     <p class="govuk-body">No keywords</p>
-    {% endif %}
-
-    <!-- problem working on -->
-    <h3 class="govuk-heading-m">What problem are we working on</h3>
-    {% if data['problem-to-solve']%}
-
-      <p class="govuk-body">{{ data['problem-to-solve'] }}</p>
-    {% else %}
-    <p class="govuk-body">The author hasn't published that yet.</p>
     {% endif %}
 
     <!-- why problem -->
@@ -66,7 +58,7 @@
 
     <!-- outcomes -->
     <hr class="govuk-section-break govuk-section-break--m">
-    <h3 class="govuk-heading-m">What outcomes are we looking for</h3>
+    <h3 class="govuk-heading-m">The outcomes we are working towards</h3>
     {% if data['what-outcomes'] %}
       <p class="govuk-body">{{ data['what-outcomes'] }}</p>
 
@@ -76,12 +68,48 @@
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
+    <!-- the help you're looking for -->
+
+    {% if data['need-help'] === 'yes' %}
+      <h3 class="govuk-heading-m">The help we're looking for</h3>
+      <ul class="govuk-list govuk-list--bullet">
+        {% for answer in data['help-with']%}
+        <li>
+          {{ answer }}
+        </li>
+        {% endfor %}
+      </ul>
+
+    {% endif %}
+
+
+    <!-- the question you've asked the community -->
+    <h3 class="govuk-heading-m">We asked the comunity</h3>
+    {% if data['ask-question'] === 'yes' %}
+      <p class="govuk-body"> {{ data['question'] }}</p>
+    {% else %}
+      <p class="govuk-body">No questions posted yet.</p>
+    {% endif %}
+
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
     <h2 class="govuk-heading-l">Updates</h2>
     <p class="govuk-body">The author hasn't published any updates.</p>
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <h2 class="govuk-heading-l">Comments</h2>
-    <p class="govuk-body">No Comments</p>
+
+    {% if data['comment']%}
+    <div class="govuk-inset-text">
+      <p class="govuk-body">{{ data['comment']}}</p>
+      <span class="govuk-body-s">Posted by <a href="">Aggie the Brave</a> on 14th Oct 2019</span> <br> <p><a href="#">Reply</a></p>
+    </div>
+
+    {% else %}
+       <p class="govuk-body">No Comments</p>
+    {% endif %}
+
+    <form action="{{ '/post-comment' }}" method="post" class="form">
 
     {{ govukCharacterCount({
       name: "comment",
@@ -90,27 +118,30 @@
       rows: "4",
       label: {
         text: "Ask a question about this project",
-        classes: "govuk-label--s"
+        classes: "govuk-label--m"
       }
     }) }}
 
     {{ govukButton({
       text: "Post"
     }) }}
+    </form>
+
 
   </div>
 
   <!-- SIDEBAR -->
   <div class="govuk-grid-column-one-third">
     <div class="mini-container">
-      <h4 class="govuk-heading-s">Stats</h4>
-      <span>22 viewers</span>
-      <span>2 comments</span>
-      <span>5 people found resources useful</span>
+      <h4 class="govuk-heading-s">Community engagement</h4>
+      <span class="govuk-body statistic">22 viewers</span>
+      <span class="govuk-body statistic">2 comments</span>
+      <span class="govuk-body statistic">5 people found resources useful</span>
 
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" >
 
       <h4 class="govuk-heading-s">Status</h4>
-        <p class="govuk-body">Project</p>
+      <span class="govuk-body status">{{ data['status']}}</span>
 
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" >
       <h4 class="govuk-heading-s">Main contact</h4>
@@ -124,16 +155,15 @@
       </div>
 
       {% else %}
-      <p class="govuk-body">No main contact for this project.</p>
+      <div class="contact-details">
+        <span class="govuk-body-s">Joe Bloggs</span>
+        <span class="govuk-body-s">Transformation Manager</span>
+        <span><a href="#">joebloogs@localov.com</a></span>
+      </div>
       {% endif %}
-
-      <h4 class="govuk-heading-s">Team</h4>
-      <p class="govuk-body">No main contact for this project.</p>
 
     </div>
   </div>
-
-
 
 </div>
 
